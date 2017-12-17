@@ -10,57 +10,56 @@ module.exports = {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
+    plugins: [
+            new ExtractTextPlugin( "bundle.css" )
+        ],
+    resolve: {
+        modules: [
+            path.join(__dirname, 'src'),
+            path.join(__dirname, 'node_modules')
+        ]
+    },
     module: {
         rules: [
             {
                 test: /\.js|.jsx?$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/, /public/],
                 include: path.join(__dirname, 'src'),
-                use: ['babel-loader']
+                use: ['babel-loader'/*, 'eslint-loader'*/]
             },
-            {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: "url?limit=10000&mimetype=application/font-woff"},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: 'url?limit=10000&mimetype=application/octet-stream'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: 'url?limit=10000&mimetype=image/svg+xml'},
-            {test: /\.(jpe?g|png|gif)$/i, use: ['file']},
-            {test: /\.ico$/, use: 'file?name=[name].[ext]'},
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  use: [
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                            minimize: true,
+                            sourceMap: true
+                        }
+                    }, 
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                  ]
+                })
+              },
             {
                 test: /\.css$/,
-                use: [
-                    require.resolve('style-loader'),
-                    {
-                        loader: require.resolve('css-loader'),
-                        options: {
-                            importLoaders: 1,
-                            modules: true,
-                            localIdentName: "[name]__[local]___[hash:base64:5]"
-                        },
-                    },
-                    {
-                        loader: require.resolve('postcss-loader'),
-                        options: {
-                            // Necessary for external CSS imports to work
-                            // https://github.com/facebookincubator/create-react-app/issues/2677
-                            ident: 'postcss',
-                            plugins: () => [
-                                autoprefixer({
-                                    browsers: [
-                                        '>1%',
-                                        'last 4 versions',
-                                        'Firefox ESR',
-                                        'not ie < 9', // React doesn't support IE8 anyway
-                                    ],
-                                    flexbox: 'no-2009',
-                                })
-                            ],
-                        },
-                    },
-                ],
-            },
-        ]
-    },
-    resolve: {
-        modules: [
-            path.join(__dirname, 'node_modules')
+                loader: ['style-loader', 'css-loader']
+              },
+              { test: /\.gif$/, loader: 'url-loader?limit=10000&mimetype=image/gif' },
+              { test: /\.jpg$/, loader: 'url-loader?limit=10000&mimetype=image/jpg' },
+              { test: /\.png$/, loader: 'url-loader?limit=10000&mimetype=image/png' },
+              { test: /\.svg/, loader: 'url-loader?limit=26000&mimetype=image/svg+xml' },
+              { test: /\.(woff|woff2|ttf|eot)/, loader: 'url-loader?limit=1' },
+              { test: /\.json$/, loader: 'json-loader' },
+
         ]
     }
 };
