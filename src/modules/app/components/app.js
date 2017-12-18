@@ -1,31 +1,22 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
-
-import * as auth from './../../auth';
-import {compoments as Bills} from './../../bills';
-import {compoments as Category} from './../../category';
-import {compoments as Add} from './../../add';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import Header from './header'
-import Navbar from './navbar'
 import Footer from './footer'
-import Home from './home'
+import Routes from './../../../routes';
 
-//const { SignupForm, LoginForm } = auth.components;
-
+import './app.scss';
 
 const App = () => (
-    <BrowserRouter>
+    <Router>
         <div>
             <Header />
-            <Navbar />
-            <Route exact path="/" component={Home} />
-            <Route path="/add" component={Add} />
-            <Route path="/bills" component={Bills} />
-            <Route path="/category" component={Category} />
+            <main>
+                <Routes/>
+            </main>
             <Footer />
         </div>
-    </BrowserRouter>
+    </Router>
 
 );
 

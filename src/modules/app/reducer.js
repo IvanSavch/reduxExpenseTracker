@@ -1,6 +1,9 @@
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux'
 
+import * as add from './../add'
+import * as category from './../category'
 
-export default function(action, state){
-    return state;
-}
+export default combineReducers({
+    [add.moduleName]: add.reducer,
+    [category.moduleName]: category.reducer,
+})

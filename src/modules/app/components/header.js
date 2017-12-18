@@ -1,8 +1,8 @@
 import React from 'react'
-import header from './header.scss';
+import Navbar from './navbar';
 
 const Header = () => (
-    <div className="header">Manage your expenses easily!</div>
+    <Navbar />
 );
 
 export default Header

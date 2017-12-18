@@ -1,5 +1,12 @@
-import React from 'react'
+import React from 'react';
+import {Component} from 'react';
 
-const Home = () => (<div>Home</div>);
+import Add from './../../add';
+const {AddForm} = Add;
+
+const Home = () => (
+    <div>
+        <AddForm />
+    </div>);
 
 export default Home
