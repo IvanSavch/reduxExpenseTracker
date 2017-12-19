@@ -1,9 +1,6 @@
-export const containers = {
-
-};
-
 import mainSaga from './sagas'
 import * as action from './actions';
+import CategoryList from './containers/index';
 
 export const moduleName = 'category';
 
@@ -15,6 +12,6 @@ export const sagas = {
 
 export const actions = action;
 
-export const components = {
-
+export const containers = {
+    CategoryList
 };

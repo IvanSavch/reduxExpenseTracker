@@ -4,10 +4,10 @@ import {FAILURE, REQUEST, SUCCESS} from "../../utils/actions";
 
 function list(state = {}, action) {
     switch (action.type) {
-        case ActionTypes.LOAD_CATEGORIES[SUCCESS]:
-            let data = action.response.reduce((obj, element) => {
-                obj[element.id] = element;
-                return obj;
+        case ActionTypes.LOAD_BILLS[SUCCESS]:
+            let data = action.response.reduce((ob, element) => {
+                ob[element.id] = element;
+                return ob;
             }, {});
             return data;
         default:
@@ -17,10 +17,10 @@ function list(state = {}, action) {
 
 function isFetching(state = false, action) {
     switch (action.type) {
-        case ActionTypes.LOAD_CATEGORIES[REQUEST]:
+        case ActionTypes.LOAD_BILLS[REQUEST]:
             return true;
-        case ActionTypes.LOAD_CATEGORIES[SUCCESS]:
-        case ActionTypes.LOAD_CATEGORIES[FAILURE]:
+        case ActionTypes.LOAD_BILLS[SUCCESS]:
+        case ActionTypes.LOAD_BILLS[FAILURE]:
             return false;
         default:
             return state;
@@ -29,7 +29,7 @@ function isFetching(state = false, action) {
 
 function ids(state = [], action) {
     switch (action.type) {
-        case ActionTypes.LOAD_CATEGORIES[SUCCESS]:
+        case ActionTypes.LOAD_BILLS[SUCCESS]:
             return action.response.map(element => element.id);
         default:
             return state
@@ -38,9 +38,9 @@ function ids(state = [], action) {
 
 function errorMessage(state = "", action){
     switch (action.type) {
-        case ActionTypes.LOAD_CATEGORIES[FAILURE]:
+        case ActionTypes.LOAD_BILLS[FAILURE]:
             return action.error;
-        case ActionTypes.LOAD_CATEGORIES[REQUEST]:
+        case ActionTypes.LOAD_BILLS[REQUEST]:
             return "";
         default:
             return state;

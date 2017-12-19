@@ -2,7 +2,7 @@ import {Component} from 'react';
 import React from 'react';
 import PropTypes from 'prop-types'
 
-import * as types from './../types';
+import * as types from './../../category/types';
 import './addForm.scss';
 
 
@@ -30,7 +30,7 @@ class AddFormComponent extends Component {
         const {categoryList} = this.props;
         return (
             <div className='panel panel-default'>
-                <div class="panel-heading">Add new value</div>
+                <div className="panel-heading">Add new value</div>
                 <form onSubmit={this.onSubmit} role='form' className='form-horizontal panel-body'>
                     <div className='form-group'>
                         <label className='control-label col-md-2'>Title</label>
@@ -49,7 +49,7 @@ class AddFormComponent extends Component {
                         <div className='col-md-10'>
                             <select value={this.state.category} name='category' className='form-control'>
                                 {categoryList.map(element =>
-                                    <option key={element.value}>{element.name}</option>
+                                    <option key={element.id}>{element.name}</option>
                                 )}
                             </select>
                         </div>
@@ -69,7 +69,7 @@ class AddFormComponent extends Component {
 
 AddFormComponent.propTypes = {
     onSubmit: () => {},
-    categoryList: types.categories
+    //categoryList: types.categories
 };
 
 export default AddFormComponent;

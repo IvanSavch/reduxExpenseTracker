@@ -3,18 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 import AddFormComponent from './../components/addForm';
+import {getBillIds, getBillList, getErrorMessage, getIsFetching} from "../../bills/selectors";
+import {getCategoryList} from "../../category/selectors";
+import {addBill} from "../actions";
 
 class AddForm extends Component {
     constructor(props) {
         super(props);
-
-        this.categoryList = [
-            {name: 'Food', value: 'food'},
-            {name: 'Cinema', value: 'cinema'},
-            {name: 'Clothes', value: 'clothes'},
-            {name: 'Gifts', value: 'gifts'},
-            {name: 'Fixed expenses', value: 'fixed'}
-        ];
 
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -26,20 +21,22 @@ class AddForm extends Component {
     render() {
         return (
             <AddFormComponent
-                categoryList={this.categoryList}
+                categoryList={this.props.categoryList}
                 onSubmit={this.onSubmit}
             />
         )
     }
 }
 
-const mapStateToProps = createStructuredSelector({
-    AddForm,
-});
+const mapStateToProps = (state, props) => {
+    return {
+        categoryList: getCategoryList(state)
+    }
+};
 
 const mapDispatchToProps = (dispatch, props) => ({
     addBill(data) {
-        dispatch(AddBill(data));
+        dispatch(addBill(data));
     }
 });
 

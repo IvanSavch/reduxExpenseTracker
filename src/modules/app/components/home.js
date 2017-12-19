@@ -1,8 +1,8 @@
 import React from 'react';
 import {Component} from 'react';
 
-import Add from './../../add';
-const {AddForm} = Add;
+import {containers} from './../../add';
+const {AddForm} = containers;
 
 const Home = () => (
     <div>

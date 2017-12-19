@@ -13,9 +13,9 @@ export function* loadCategories() {
         yield take(Actions.LOAD_CATEGORIES[REQUEST]);
         const { categories, message } = yield call(api.fetchCategories);
         if (categories) {
-            yield put(Actions.loadCategories.success({data: categories}));
+            yield put(Actions.loadCategories.success(categories));
         } else if (message) {
-            yield put(Actions.loadCategories.failure({error: message}));
+            yield put(Actions.loadCategories.failure(message));
         } else {
             throw Error('API must return categories or message');
         }
