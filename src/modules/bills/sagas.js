@@ -5,6 +5,7 @@ import {REQUEST} from "../../utils/actions";
 
 export default function*() {
     yield fork(loadBills);
+    yield fork(editBill);
 }
 
 export function* loadBills() {
@@ -17,6 +18,20 @@ export function* loadBills() {
             yield put(Actions.loadBills.failure(message));
         } else {
             throw Error('API must return bills or message');
+        }
+    }
+}
+
+export function* editBill() {
+    while (true) {
+        const data = yield take(Actions.EDIT_BILL[REQUEST]);
+        const { status, message } = yield call(api.editBill, data);
+        if (status) {
+            yield put(Actions.editBill.success());
+        } else if (message) {
+            yield put(Actions.editBill.failure(message));
+        } else {
+            throw Error('API must return status or message');
         }
     }
 }

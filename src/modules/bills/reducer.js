@@ -18,9 +18,12 @@ function list(state = {}, action) {
 function isFetching(state = false, action) {
     switch (action.type) {
         case ActionTypes.LOAD_BILLS[REQUEST]:
+        case ActionTypes.EDIT_BILL[REQUEST]:
             return true;
         case ActionTypes.LOAD_BILLS[SUCCESS]:
+        case ActionTypes.EDIT_BILL[SUCCESS]:
         case ActionTypes.LOAD_BILLS[FAILURE]:
+        case ActionTypes.EDIT_BILL[FAILURE]:
             return false;
         default:
             return state;
@@ -39,8 +42,10 @@ function ids(state = [], action) {
 function errorMessage(state = "", action){
     switch (action.type) {
         case ActionTypes.LOAD_BILLS[FAILURE]:
+        case ActionTypes.EDIT_BILL[FAILURE]:
             return action.error;
         case ActionTypes.LOAD_BILLS[REQUEST]:
+        case ActionTypes.EDIT_BILL[REQUEST]:
             return "";
         default:
             return state;

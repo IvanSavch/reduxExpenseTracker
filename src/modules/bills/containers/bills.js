@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import BillTable from './../components/billTable';
 import {getBillIds, getBillList, getErrorMessage, getIsFetching} from "../selectors";
-import {loadBills} from "../actions";
+import {loadBills, editBill} from "../actions";
 
 class Bills extends Component {
     constructor(props) {
@@ -19,7 +19,10 @@ class Bills extends Component {
         let bills = this.props.bills || [];
         console.log("render bill", bills);
         return (
-            <BillTable bills={bills} />
+            <BillTable
+                bills={bills}
+                onEdit={this.props.editBill}
+            />
         )
     }
 }
@@ -34,6 +37,10 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => ({
     loadBills() {
         dispatch(loadBills.request());
+    },
+
+    editBill(data) {
+        dispatch(editBill.request(data));
     }
 });
 

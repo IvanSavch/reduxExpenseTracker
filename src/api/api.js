@@ -33,4 +33,6 @@ export default {
             .then(response => response.data)
             .catch(error => error),*/
         Promise.resolve({bills}),
+
+    editBill: (data) => Promise.resolve({status: 1}),
 }
