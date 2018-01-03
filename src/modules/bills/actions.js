@@ -9,7 +9,7 @@ export const loadBills = {
 
 export const EDIT_BILL = createRequestTypes('EDIT_BILL');
 export const editBill = {
-    request: (data) => action(EDIT_BILL[REQUEST], data),
+    request: data => action(EDIT_BILL[REQUEST], data),
     success: response => action(EDIT_BILL[SUCCESS], {response}),
     failure: error => action(EDIT_BILL[FAILURE], {error})
 };

@@ -9,9 +9,10 @@ export default function*() {
 
 export function* addBill() {
     while (true) {
-        const data = yield take(Actions.ADD_BILL[REQUEST]);
-        const { response, message } = yield call(api.addBill(data));
-        if (response && response.status) {
+        const action = yield take(Actions.ADD_BILL[REQUEST]);
+        const { status, message } = yield call(api.addBill, action.data);
+
+        if (status) {
             yield put(Actions.addBill.success());
         } else if (message) {
             yield put(Actions.addBill.failure({error: message}));

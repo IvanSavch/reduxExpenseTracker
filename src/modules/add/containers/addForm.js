@@ -36,7 +36,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
     addBill(data) {
-        dispatch(addBill(data));
+        dispatch(addBill.request(data));
     }
 });
 

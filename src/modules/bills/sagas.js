@@ -6,6 +6,7 @@ import {REQUEST} from "../../utils/actions";
 export default function*() {
     yield fork(loadBills);
     yield fork(editBill);
+    yield put(Actions.loadBills.request());
 }
 
 export function* loadBills() {

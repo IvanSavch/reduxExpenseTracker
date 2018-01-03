@@ -19,11 +19,16 @@ class AddFormComponent extends Component {
 
         this.state = this.initialValues;
         this.onSubmit = this.onSubmit.bind(this);
+        this.onEdit = this.onEdit.bind(this);
     }
 
     onSubmit(e) {
         e.preventDefault();
         this.props.onSubmit(this.state);
+    }
+
+    onEdit(e) {
+        this.setState(...this.state, {[e.target.name]: e.target.value});
     }
 
     render() {
@@ -35,19 +40,19 @@ class AddFormComponent extends Component {
                     <div className='form-group'>
                         <label className='control-label col-md-2'>Title</label>
                         <div className='col-md-10'>
-                            <input name='title'  value={this.state.title} className='form-control'/>
+                            <input name='title'  value={this.state.title} onChange={this.onEdit} className='form-control'/>
                         </div>
                     </div>
                     <div className='form-group'>
                         <label className='control-label col-md-2'>Costs</label>
                         <div className='col-md-10'>
-                            <input value={this.state.value} name='value' className='form-control'/>
+                            <input value={this.state.value} onChange={this.onEdit} name='value' className='form-control'/>
                         </div>
                     </div>
                     <div className='form-group'>
                         <label className='control-label col-md-2'>Category</label>
                         <div className='col-md-10'>
-                            <select value={this.state.category} name='category' className='form-control'>
+                            <select value={this.state.category} onChange={this.onEdit} name='category' className='form-control'>
                                 {categoryList.map(element =>
                                     <option key={element.id}>{element.name}</option>
                                 )}
@@ -57,7 +62,7 @@ class AddFormComponent extends Component {
                     <div className='form-group'>
                         <label className='control-label col-md-2'>Description</label>
                         <div className='col-md-10'>
-                            <input value={this.state.description} name='description' className='form-control'/>
+                            <input value={this.state.description} name='description' onChange={this.onEdit} className='form-control'/>
                         </div>
                     </div>
                     <button className='btn btn-primary pull-right'>Add</button>

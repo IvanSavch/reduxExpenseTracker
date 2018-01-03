@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import * as ActionTypes from './actions'
+import {ADD_BILL} from './../add/actions';
 import {FAILURE, REQUEST, SUCCESS} from "../../utils/actions";
+import uuid from 'js-uuid';
 
 function list(state = {}, action) {
     switch (action.type) {
@@ -9,13 +11,19 @@ function list(state = {}, action) {
                 ob[element.id] = element;
                 return ob;
             }, {});
-            return data;
+            console.log("load bill", Object.assign({}, state, data));
+            return Object.assign({}, state, data);
+        case ADD_BILL[REQUEST]:
+            let id = uuid.v4();
+            let newBill = action.data;
+            newBill.id = id;
+            return Object.assign({}, state, {[id]: newBill});
         default:
-            return state
+            return state;
     }
 }
 
-function isFetching(state = false, action) {
+function loading(state = false, action) {
     switch (action.type) {
         case ActionTypes.LOAD_BILLS[REQUEST]:
         case ActionTypes.EDIT_BILL[REQUEST]:
@@ -34,6 +42,8 @@ function ids(state = [], action) {
     switch (action.type) {
         case ActionTypes.LOAD_BILLS[SUCCESS]:
             return action.response.map(element => element.id);
+        case ADD_BILL:
+            return [...state, action.data.id];
         default:
             return state
     }
@@ -55,6 +65,6 @@ function errorMessage(state = "", action){
 export default combineReducers({
     list,
     ids,
-    isFetching,
+    loading,
     errorMessage
 })

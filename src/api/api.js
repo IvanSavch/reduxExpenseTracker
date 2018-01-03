@@ -22,10 +22,11 @@ export default {
         Promise.resolve({categories}),
 
     addBill: data =>
-        axios
+        /*axios
             .post('/api/addBill', { data })
             .then(response => response.data)
-            .catch(error => error.response.data),
+            .catch(error => error.response.data),*/
+        Promise.resolve({status: 1}),
 
     fetchBills: () =>
         /*axios
