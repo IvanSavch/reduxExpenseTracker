@@ -2,8 +2,8 @@ import * as ActionTypes from './actions'
 import { REQUEST, SUCCESS, FAILURE } from '../../utils/actions';
 
 const initialState = {
-    loading: false,
-    errorMessage: ""
+    expense: [],
+    income: []
 };
 
 

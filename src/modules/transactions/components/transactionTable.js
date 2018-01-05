@@ -4,7 +4,7 @@ import React from 'react';
 import {} from './../../../api/api';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
-class BillTable extends Component {
+class TransactionTable extends Component {
     constructor(props) {
         super(props);
 
@@ -19,7 +19,7 @@ class BillTable extends Component {
     }
 
     onSubmit(data) {
-        this.props.addBill(data);
+        this.props.addTransaction(data);
     }
 
     onAfterSaveCell(row, cellName, cellValue) {
@@ -33,9 +33,9 @@ class BillTable extends Component {
     }
 
     render() {
-        console.log(this.props.bills);
+        console.log(this.props.transactions);
         return (
-            <BootstrapTable cellEdit={ this.cellEditProp } data={this.props.bills} hover={true} borders={false}>
+            <BootstrapTable cellEdit={this.cellEditProp} data={this.props.transactions} hover={true} borders={false}>
                 <TableHeaderColumn dataField="id" isKey>#</TableHeaderColumn>
                 <TableHeaderColumn dataField="title">Product Name</TableHeaderColumn>
                 <TableHeaderColumn dataField="amount">Product Price</TableHeaderColumn>
@@ -46,4 +46,4 @@ class BillTable extends Component {
     }
 }
 
-export default BillTable;
+export default TransactionTable;

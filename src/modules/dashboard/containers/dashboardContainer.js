@@ -2,7 +2,7 @@ import {Component} from 'react';
 import React from 'react';
 import { connect } from 'react-redux'
 
-import AddFormComponent from './../components/addForm';
+import DashboardComponent from './../components/dashboard';
 import {getBillIds, getBillList, getErrorMessage, getIsFetching} from "../../transactions/selectors";
 import {getCategoryList} from "../../category/selectors";
 import {addBill} from "../actions";
@@ -20,7 +20,7 @@ class AddForm extends Component {
 
     render() {
         return (
-            <AddFormComponent
+            <DashboardComponent
                 categoryList={this.props.categoryList}
                 onSubmit={this.onSubmit}
             />

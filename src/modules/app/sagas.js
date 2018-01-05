@@ -1,11 +1,11 @@
 import { fork } from 'redux-saga/effects'
 
-import * as add from 'modules/add'
+import * as dashboard from 'modules/dashboard'
 import * as category from 'modules/category'
-import * as bills from 'modules/bills'
+import * as transactions from 'modules/transactions'
 
 export default function* mainSaga() {
-    yield fork(add.sagas.mainSaga);
+    yield fork(dashboard.sagas.mainSaga);
     yield fork(category.sagas.mainSaga);
-    yield fork(bills.sagas.mainSaga);
+    yield fork(transactions.sagas.mainSaga);
 }

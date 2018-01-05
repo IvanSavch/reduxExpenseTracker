@@ -1,10 +1,8 @@
-
-
 import mainSaga from './sagas'
 import * as action from './actions';
-import Bills from './containers/bills';
+import TransactionContainer from './containers/transactionContainer';
 
-export const moduleName = 'bills';
+export const moduleName = 'transactions';
 
 export { default as reducer } from './reducer'
 
@@ -15,5 +13,5 @@ export const sagas = {
 export const actions = action;
 
 export const containers = {
-    Bills
+    TransactionContainer
 };

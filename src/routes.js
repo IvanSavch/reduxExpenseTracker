@@ -2,20 +2,20 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import * as auth from './modules/auth';
-import Home from './modules/app/components/home';
-import {containers as BillContainers} from './modules/bills';
+import Dashboard from './modules/dashboard';
+import {containers as TransactionContainers} from './modules/transactions';
 import {containers as CategoryContainers} from './modules/category';
 
-const {Bills} = BillContainers;
+const { Transactions } = TransactionContainers;
 const {CategoryList} = CategoryContainers;
 //const { SignupForm, LoginForm } = auth.components;
 
 
 const Routes = () => (
     <div>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/home" component={Home} />
-        <Route path="/bills" component={Bills} />
+        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route path="/transactions" component={Transactions} />
         <Route path="/category" component={CategoryList} />
     </div>
 );

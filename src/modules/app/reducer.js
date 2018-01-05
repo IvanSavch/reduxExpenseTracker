@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
-import * as add from './../add'
-import * as category from './../category'
-import * as bills from './../bills'
+import * as dashboard from './../add';
+import * as category from './../category';
+import * as transactions from './../transactions';
 
 export default combineReducers({
-    [add.moduleName]: add.reducer,
+    [dashboard.moduleName]: dashboard.reducer,
     [category.moduleName]: category.reducer,
-    [bills.moduleName]: bills.reducer,
+    [transactions.moduleName]: transactions.reducer,
 })
