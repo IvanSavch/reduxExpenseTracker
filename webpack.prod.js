@@ -16,3 +16,5 @@ module.exports = merge(common, {
         new webpack.optimize.UglifyJsPlugin()
     ]
 });
+
+//test
